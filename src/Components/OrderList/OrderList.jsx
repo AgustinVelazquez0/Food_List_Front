@@ -1,17 +1,11 @@
-import styles from "./OrderList.module.css";
+import LiFoods from "../LiFoods/LiFoods"; // Importa el componente LiFoods
+import styles from "./OrderList.module.css"; // Si tienes estilos para OrderList
+
 function OrderList() {
   return (
-    <div className={styles.list}>
-      <h3>OrderList</h3>
-      <ul>
-        <li>
-          <div>
-            <span>���</span>
-            <span>Pizza Margherita</span>
-            <span>$12.00</span>
-          </div>
-        </li>
-      </ul>
+    <div className={styles.orderList}>
+      <h1>Your Order</h1>
+      <LiFoods />
     </div>
   );
 }

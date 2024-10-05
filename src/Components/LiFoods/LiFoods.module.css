@@ -1,0 +1,64 @@
+.foodsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+  width: 43vh;
+}
+
+.foodItem {
+  font-size: 2rem; /* Tamaño del ícono */
+  padding: 10px;
+  background-color: #f0f0f0; /* Fondo de cada div pequeño */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40vh;
+  height: 50px;
+  justify-content: space-around;
+  color: black;
+}
+
+.foodIcon {
+  font-size: 24px; /* Tamaño del ícono */
+  margin-right: 10px; /* Espaciado a la derecha del ícono */
+}
+
+/* Estilos para los precios y cantidades */
+.foodPrice {
+  margin-right: 10px; /* Espaciado a la derecha del precio */
+}
+
+.foodQuantity {
+  margin-right: 10px; /* Espaciado a la derecha de la cantidad */
+}
+
+/* Estilos para los botones */
+.button {
+  padding: 4px 8px; /* Espaciado interno para los botones */
+  font-size: 12px; /* Tamaño de la fuente del texto en los botones */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  border: 1px solid #ccc; /* Borde de los botones */
+  background-color: #f0f0f0; /* Color de fondo por defecto */
+  border-radius: 4px; /* Esquinas redondeadas */
+}
+
+/* Nueva clase para botones más pequeños */
+.smallButton {
+  padding: 2px 4px; /* Espaciado interno reducido para botones más pequeños */
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  border: 1px solid #aaa; /* Borde de los botones pequeños */
+  background-color: #e0e0e0; /* Color de fondo por defecto para botones pequeños */
+  border-radius: 3px; /* Esquinas redondeadas */
+}
+
+.smallButton:hover {
+  background-color: #d0d0d0; /* Color de fondo al pasar el mouse para botones pequeños */
+}
+
+.totalPrice {
+  margin-top: 20px; /* Espaciado superior para el precio total */
+}
