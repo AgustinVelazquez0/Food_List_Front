@@ -1,0 +1,22 @@
+.foods {
+  border-radius: 10px;
+  background-color: aliceblue;
+  font-size: 7rem; /* Cambia esto según tus necesidades */
+  margin: 10px; /* Cambia esto según tus necesidades */
+}
+
+.contenedorFoods {
+  background-color: antiquewhite;
+  display: flex; /* Asegúrate de que esta línea esté presente */
+  flex-wrap: wrap;
+  justify-content: space-around; /* Asegúrate de que esta línea esté presente */
+  width: 80vh;
+  border-radius: 10px;
+}
+
+.fatherTitle {
+  display: flex;
+  font-size: 3rem;
+  align-items: center;
+  flex-direction: column;
+}
