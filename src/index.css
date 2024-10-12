@@ -25,14 +25,21 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column; /* Esto permite que los elementos hijos se coloquen en columnas */
+  align-items: center; /* Centra los elementos en el eje horizontal */
+  justify-content: center; /* Centra los elementos en el eje vertical */
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; /* Esto garantiza que el cuerpo ocupe toda la altura de la ventana */
+  width: 100vw; /* Asegúrate de que el ancho ocupe el 100% de la ventana */
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* En index.css */
+h2 {
+  font-size: 4rem; /* Tamaño de la fuente */
+  text-align: center; /* Centrado */
+  color: #283341; /* Color */
+  margin-bottom: 20px; /* Espacio */
 }
 
 button {

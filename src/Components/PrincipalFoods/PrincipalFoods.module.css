@@ -1,24 +1,33 @@
 .foods {
   border-radius: 10px;
   background-color: aliceblue;
-  font-size: 7rem; /* Cambia esto según tus necesidades */
+  font-size: 4rem; /* Cambia esto según tus necesidades */
   margin: 10px; /* Cambia esto según tus necesidades */
+  display: flex; /* Asegura que los íconos se alineen correctamente */
+  justify-content: center; /* Centra el contenido dentro del contenedor */
+  align-items: center; /* Centra verticalmente el contenido */
 }
 
 .contenedorFoods {
   background-color: antiquewhite;
   display: flex; /* Asegúrate de que esta línea esté presente */
   flex-wrap: wrap;
-  justify-content: space-around; /* Asegúrate de que esta línea esté presente */
-  width: 80vh;
+  justify-content: center; /* Cambiado para centrar el contenido */
+  width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+  max-width: 80vh; /* Ancho máximo para evitar que se extienda demasiado */
   border-radius: 10px;
+  padding: 10px; /* Espaciado interno para el contenedor */
+  box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
 }
 
 .fatherTitle {
   display: flex;
   font-size: 3rem;
+  padding-right: 100px;
   align-items: center;
   flex-direction: column;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  max-width: 80vh; /* Ancho máximo para el título */
 }
 
 /* Media query para pantallas pequeñas */
@@ -26,12 +35,16 @@
   .contenedorFoods {
     flex-direction: row; /* Alinea los íconos en columna */
     align-items: center; /* Centra los íconos horizontalmente */
-    width: 100%; /* Cambia a un porcentaje o px para mejor ajuste en pantallas pequeñas */
+    width: 85%; /* Cambia a un porcentaje o px para mejor ajuste en pantallas pequeñas */
   }
 
   .foods {
     width: 9vh; /* Permite que los íconos usen el ancho adecuado */
     margin: 10px 0; /* Espaciado vertical entre íconos */
-    font-size: 2em; /* Ajusta el tamaño de los íconos según sea necesario */
+    font-size: 1em; /* Ajusta el tamaño de los íconos según sea necesario */
+  }
+
+  .fatherTitle {
+    padding-right: 10px;
   }
 }

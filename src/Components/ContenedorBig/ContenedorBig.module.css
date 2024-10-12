@@ -1,12 +1,13 @@
 .ContenedorBig {
   display: flex;
-  margin: 0 auto;
+  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
   padding: 12px;
   background-color: #283341;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  justify-content: space-evenly;
+  max-width: 1200px; /* Ancho máximo para evitar que se expanda demasiado en pantallas grandes */
+  box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+  justify-content: space-evenly; /* Espaciado uniforme entre los elementos hijos */
 }
 
 /* Media query para pantallas pequeñas */

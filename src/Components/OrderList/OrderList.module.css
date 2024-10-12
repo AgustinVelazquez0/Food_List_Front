@@ -1,7 +1,10 @@
 .list {
   display: flex;
-  width: 40vh;
-  text-align: center;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: column; /* Mantiene la dirección de la lista en columna */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+  align-items: center; /* Centra los elementos en el contenedor */
+  width: 100%; /* Se ajusta al ancho del contenedor padre */
+  max-width: 40vh; /* Ancho máximo para evitar que sea demasiado ancho */
+  margin: 0 auto; /* Centra el contenedor en la pantalla */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
