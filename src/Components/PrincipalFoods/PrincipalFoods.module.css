@@ -1,6 +1,6 @@
 .foods {
   border-radius: 10px;
-  background-color: aliceblue;
+  background-color: rgb(29, 31, 31);
   font-size: 4rem; /* Cambia esto según tus necesidades */
   margin: 10px; /* Cambia esto según tus necesidades */
   display: flex; /* Asegura que los íconos se alineen correctamente */
@@ -9,7 +9,7 @@
 }
 
 .contenedorFoods {
-  background-color: antiquewhite;
+  background-color: rgb(59, 44, 26);
   display: flex; /* Asegúrate de que esta línea esté presente */
   flex-wrap: wrap;
   justify-content: center; /* Cambiado para centrar el contenido */

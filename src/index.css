@@ -38,7 +38,7 @@ body {
 h2 {
   font-size: 4rem; /* Tamaño de la fuente */
   text-align: center; /* Centrado */
-  color: #283341; /* Color */
+  color: rgb(197, 194, 190);
   margin-bottom: 20px; /* Espacio */
 }
 

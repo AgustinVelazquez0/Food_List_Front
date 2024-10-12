@@ -12,7 +12,8 @@
 .foodItem {
   font-size: 2rem; /* Tamaño del ícono */
   padding: 10px;
-  background-color: #f0f0f0; /* Fondo de cada div pequeño */
+  background-color: rgb(33, 35, 36);
+  color: rgb(231, 230, 228);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -20,7 +21,6 @@
   width: 100%; /* Se ajusta al ancho del contenedor padre */
   max-width: 500px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
   height: 50px;
-  color: black;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
@@ -57,7 +57,8 @@
   font-size: 10px; /* Tamaño de fuente más pequeño */
   cursor: pointer; /* Cambia el cursor al pasar por encima */
   border: 1px solid #aaa; /* Borde de los botones pequeños */
-  background-color: #e0e0e0; /* Color de fondo por defecto para botones pequeños */
+  border-color: rgb(74, 78, 79);
+  background-color: rgb(43, 45, 46);
   border-radius: 3px; /* Esquinas redondeadas */
 }
 
