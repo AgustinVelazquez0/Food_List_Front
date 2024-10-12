@@ -1,10 +1,25 @@
 .ContenedorBig {
   display: flex;
   margin: 0 auto;
-  padding: 20px;
+  padding: 12px;
   background-color: #283341;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 201vh;
+  width: 100%;
   justify-content: space-evenly;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+  .ContenedorBig {
+    flex-direction: column; /* Alinea los íconos en columna */
+    align-items: center; /* Centra los íconos horizontalmente */
+    width: 100%; /* Cambia a un porcentaje o px para mejor ajuste en pantallas pequeñas */
+  }
+
+  .foods {
+    width: auto; /* Permite que los íconos usen el ancho adecuado */
+    margin: 10px 0; /* Espaciado vertical entre íconos */
+    font-size: 8em; /* Ajusta el tamaño de los íconos según sea necesario */
+  }
 }

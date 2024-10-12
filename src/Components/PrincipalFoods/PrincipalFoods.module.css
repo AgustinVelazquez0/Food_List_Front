@@ -20,3 +20,18 @@
   align-items: center;
   flex-direction: column;
 }
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+  .contenedorFoods {
+    flex-direction: row; /* Alinea los íconos en columna */
+    align-items: center; /* Centra los íconos horizontalmente */
+    width: 100%; /* Cambia a un porcentaje o px para mejor ajuste en pantallas pequeñas */
+  }
+
+  .foods {
+    width: 9vh; /* Permite que los íconos usen el ancho adecuado */
+    margin: 10px 0; /* Espaciado vertical entre íconos */
+    font-size: 2em; /* Ajusta el tamaño de los íconos según sea necesario */
+  }
+}
