@@ -1,15 +1,35 @@
-import { useState } from "react"; // Importar useState
+import { useState, useEffect } from "react";
 import styles from "./LiFoods.module.css"; // Importar los estilos CSS
 
 function LiFoods() {
-  const [foods, setFoods] = useState([
+  // Lista de alimentos por defecto
+  const defaultFoods = [
     { icon: "🍔", price: 5.0, quantity: 1 },
     { icon: "🍕", price: 7.5, quantity: 2 },
     { icon: "🌭", price: 4.0, quantity: 1 },
     { icon: "🧀", price: 3.0, quantity: 3 },
     { icon: "🥩", price: 10.0, quantity: 1 },
     { icon: "🥗", price: 6.5, quantity: 2 },
-  ]); // Estado con íconos, precios y cantidades
+  ];
+
+  // Función para obtener los alimentos desde LocalStorage o usar el array por defecto
+  const getInitialFoods = () => {
+    const savedFoods = localStorage.getItem("foods");
+    const parsedFoods = savedFoods ? JSON.parse(savedFoods) : [];
+    return parsedFoods.length === 0 ? defaultFoods : parsedFoods;
+  };
+
+  const [foods, setFoods] = useState(getInitialFoods()); // Estado inicial con alimentos
+
+  // useEffect para actualizar LocalStorage cada vez que cambien los alimentos
+  useEffect(() => {
+    localStorage.setItem("foods", JSON.stringify(foods)); // Guardar en LocalStorage
+  }, [foods]);
+
+  // useEffect para restablecer comidas por defecto al actualizar la página
+  useEffect(() => {
+    setFoods(defaultFoods); // Restablecer las comidas por defecto
+  }, []); // Solo se ejecuta al cargar la página
 
   // Calcular el precio total
   const totalPrice = foods.reduce(
@@ -17,13 +37,14 @@ function LiFoods() {
     0
   );
 
-  // Funciones para manejar la cantidad de alimentos
+  // Función para aumentar la cantidad de alimentos
   const increaseQuantity = (index) => {
     const newFoods = [...foods]; // Copia del array
     newFoods[index].quantity++; // Aumenta la cantidad
     setFoods(newFoods); // Actualiza el estado
   };
 
+  // Función para disminuir la cantidad de alimentos
   const decreaseQuantity = (index) => {
     const newFoods = [...foods]; // Copia del array
     if (newFoods[index].quantity > 0) {
@@ -32,9 +53,16 @@ function LiFoods() {
     setFoods(newFoods); // Actualiza el estado
   };
 
+  // Función para eliminar un alimento
   const removeFood = (index) => {
-    const newFoods = foods.filter((_, i) => i !== index); // Elimina el alimento en el índice dado
+    const newFoods = foods.filter((_, i) => i !== index); // Eliminar el alimento en el índice dado
     setFoods(newFoods); // Actualiza el estado
+  };
+
+  // Función para restablecer la lista de alimentos por defecto manualmente
+  const resetFoods = () => {
+    setFoods(defaultFoods); // Restablece los alimentos por defecto
+    localStorage.setItem("foods", JSON.stringify(defaultFoods)); // Actualiza LocalStorage
   };
 
   return (
@@ -80,6 +108,10 @@ function LiFoods() {
         <h3>Total Price: ${totalPrice.toFixed(2)}</h3>{" "}
         {/* Mostrar precio total */}
       </div>
+      <button className={styles.resetButton} onClick={resetFoods}>
+        Restore foods
+      </button>{" "}
+      {/* Botón para restablecer la lista de alimentos */}
     </div>
   );
 }
