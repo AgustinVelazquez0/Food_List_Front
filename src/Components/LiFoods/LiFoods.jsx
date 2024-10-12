@@ -15,8 +15,7 @@ function LiFoods() {
   // Función para obtener los alimentos desde LocalStorage o usar el array por defecto
   const getInitialFoods = () => {
     const savedFoods = localStorage.getItem("foods");
-    const parsedFoods = savedFoods ? JSON.parse(savedFoods) : [];
-    return parsedFoods.length === 0 ? defaultFoods : parsedFoods;
+    return savedFoods ? JSON.parse(savedFoods) : defaultFoods;
   };
 
   const [foods, setFoods] = useState(getInitialFoods()); // Estado inicial con alimentos
@@ -26,9 +25,12 @@ function LiFoods() {
     localStorage.setItem("foods", JSON.stringify(foods)); // Guardar en LocalStorage
   }, [foods]);
 
-  // useEffect para restablecer comidas por defecto al actualizar la página
+  // useEffect para cargar las comidas desde LocalStorage al iniciar
   useEffect(() => {
-    setFoods(defaultFoods); // Restablecer las comidas por defecto
+    const savedFoods = localStorage.getItem("foods");
+    if (!savedFoods) {
+      setFoods(defaultFoods); // Solo establece las comidas por defecto si no hay nada en LocalStorage
+    }
   }, []); // Solo se ejecuta al cargar la página
 
   // Calcular el precio total
