@@ -25,14 +25,6 @@ function LiFoods() {
     localStorage.setItem("foods", JSON.stringify(foods)); // Guardar en LocalStorage
   }, [foods]);
 
-  // useEffect para cargar las comidas desde LocalStorage al iniciar
-  useEffect(() => {
-    const savedFoods = localStorage.getItem("foods");
-    if (!savedFoods) {
-      setFoods(defaultFoods); // Solo establece las comidas por defecto si no hay nada en LocalStorage
-    }
-  }, []); // Solo se ejecuta al cargar la página
-
   // Calcular el precio total
   const totalPrice = foods.reduce(
     (total, food) => total + food.price * food.quantity,
@@ -65,6 +57,11 @@ function LiFoods() {
   const resetFoods = () => {
     setFoods(defaultFoods); // Restablece los alimentos por defecto
     localStorage.setItem("foods", JSON.stringify(defaultFoods)); // Actualiza LocalStorage
+  };
+
+  // Función para manejar la compra
+  const handleBuy = () => {
+    alert(`Total a pagar: $${totalPrice.toFixed(2)}`); // Puedes cambiar esta lógica como desees
   };
 
   return (
@@ -110,6 +107,10 @@ function LiFoods() {
         <h3>Total Price: ${totalPrice.toFixed(2)}</h3>{" "}
         {/* Mostrar precio total */}
       </div>
+      {/* Botón para comprar */}
+      <button className={styles.buyButton} onClick={handleBuy}>
+        Buy
+      </button>
       <button className={styles.resetButton} onClick={resetFoods}>
         Restore foods
       </button>{" "}
