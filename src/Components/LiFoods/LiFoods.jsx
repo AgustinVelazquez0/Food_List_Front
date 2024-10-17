@@ -2,109 +2,115 @@ import { useState, useEffect } from "react";
 import styles from "./LiFoods.module.css"; // Importar los estilos CSS
 
 function LiFoods() {
-  // Lista de alimentos por defecto
-  const defaultFoods = [
-    { icon: "🍔", price: 5.0, quantity: 1 },
-    { icon: "🍕", price: 7.5, quantity: 2 },
-    { icon: "🌭", price: 4.0, quantity: 1 },
-    { icon: "🧀", price: 3.0, quantity: 3 },
-    { icon: "🥩", price: 10.0, quantity: 1 },
-    { icon: "🥗", price: 6.5, quantity: 2 },
-  ];
+  const [foods, setFoods] = useState([]); // Inicializar con un array vacío
+  const [loading, setLoading] = useState(true); // Estado de carga
 
-  // Función para obtener los alimentos desde LocalStorage o usar el array por defecto
-  function getInitialFoods() {
-    const savedFoods = localStorage.getItem("foods");
-    return savedFoods ? JSON.parse(savedFoods) : defaultFoods;
+  // Definir fetchFoods para obtener datos de la API
+  function fetchFoods() {
+    setLoading(true); // Colocar la aplicación en estado de carga
+    fetch("https://mocki.io/v1/5852ed66-d9a7-4b12-8470-b8ae178e89d5")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setFoods(data); // Actualizar el estado con los datos recibidos
+      })
+      .catch(function (error) {
+        console.error("Error fetching food data:", error);
+      })
+      .finally(function () {
+        setLoading(false); // Quitar el estado de carga
+      });
   }
 
-  const [foods, setFoods] = useState(getInitialFoods()); // Estado inicial con alimentos
+  useEffect(function () {
+    fetchFoods(); // Llamar a la API cuando se monte el componente
+  }, []);
 
-  // useEffect para actualizar LocalStorage cada vez que cambien los alimentos
-  useEffect(
-    function () {
-      localStorage.setItem("foods", JSON.stringify(foods)); // Guardar en LocalStorage
-    },
-    [foods]
-  );
-
-  // Calcular el precio total
-  const totalPrice = foods.reduce(function (total, food) {
-    return total + food.price * food.quantity;
-  }, 0);
-
-  // Función para aumentar la cantidad de alimentos
+  // Funciones de lógica de la aplicación
   function increaseQuantity(index) {
-    const newFoods = [...foods]; // Copia del array
-    newFoods[index].quantity++; // Aumenta la cantidad
-    setFoods(newFoods); // Actualiza el estado
-  }
-
-  // Función para disminuir la cantidad de alimentos
-  function decreaseQuantity(index) {
-    const newFoods = [...foods]; // Copia del array
-    if (newFoods[index].quantity > 0) {
-      newFoods[index].quantity--; // Disminuye la cantidad
+    const newFoods = [...foods];
+    if (newFoods[index].stock > 0) {
+      newFoods[index].quantity++;
+      newFoods[index].stock--;
     }
-    setFoods(newFoods); // Actualiza el estado
+    setFoods(newFoods);
   }
 
-  // Función para eliminar un alimento
+  function decreaseQuantity(index) {
+    const newFoods = [...foods];
+    if (newFoods[index].quantity > 0) {
+      newFoods[index].quantity--;
+      newFoods[index].stock++;
+    }
+    setFoods(newFoods);
+  }
+
   function removeFood(index) {
     const newFoods = foods.filter(function (_, i) {
       return i !== index;
-    }); // Eliminar el alimento en el índice dado
-    setFoods(newFoods); // Actualiza el estado
+    });
+    setFoods(newFoods);
   }
 
-  // Función para restablecer la lista de alimentos por defecto manualmente
   function resetFoods() {
-    setFoods(defaultFoods); // Restablece los alimentos por defecto
-    localStorage.setItem("foods", JSON.stringify(defaultFoods)); // Actualiza LocalStorage
+    fetchFoods(); // Llamar a la API nuevamente para restaurar las comidas
   }
 
-  // Función para manejar la compra
   function handleBuy() {
-    alert(`Total a pagar: $${totalPrice.toFixed(2)}`); // Puedes cambiar esta lógica como desees
+    const totalPrice = foods.reduce(function (total, food) {
+      return total + food.price * food.quantity;
+    }, 0);
+    alert("Total a pagar: $" + totalPrice.toFixed(2));
+  }
+
+  // Mostrar estado de carga
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className={styles.foodsContainer}>
-      {/* Contenedor principal */}
       {foods.map(function (food, index) {
         return (
           <div key={index} className={styles.foodItem}>
-            {/* Div individual para cada alimento */}
-            <span className={styles.foodIcon}>{food.icon}</span>{" "}
-            {/* Ícono de comida */}
-            <span className={styles.foodPrice}>{`$${food.price.toFixed(
-              2
-            )}`}</span>{" "}
-            {/* Precio */}
             <span
-              className={styles.foodQuantity}
-            >{`x${food.quantity}`}</span>{" "}
-            {/* Cantidad */}
-            {/* Botones para aumentar y disminuir la cantidad */}
+              className={
+                styles.foodIcon +
+                " " +
+                (food.stock === 0 ? styles.outOfStock : "")
+              }
+            >
+              {food.icon}
+            </span>{" "}
+            <span className={styles.foodPrice}>
+              {"$" + food.price.toFixed(2)}
+            </span>{" "}
+            <span className={styles.foodQuantity}>{"x" + food.quantity}</span>{" "}
+            {/* Mostrar aviso de "No Stock" */}
+            {food.stock === 0 && (
+              <div className={styles.noStockMessage}>No Stock :(</div>
+            )}
+            {/* Botones */}
             <button
-              className={`${styles.button} ${styles.smallButton}`}
+              className={styles.button + " " + styles.smallButton}
               onClick={function () {
                 increaseQuantity(index);
               }}
+              disabled={food.stock === 0} // Deshabilitar botón si no hay stock
             >
               +
             </button>
             <button
-              className={`${styles.button} ${styles.smallButton}`}
+              className={styles.button + " " + styles.smallButton}
               onClick={function () {
                 decreaseQuantity(index);
               }}
             >
               -
             </button>
-            {/* Botón para eliminar el alimento */}
             <button
-              className={`${styles.button} ${styles.smallButton}`}
+              className={styles.button + " " + styles.smallButton}
               onClick={function () {
                 removeFood(index);
               }}
@@ -115,18 +121,21 @@ function LiFoods() {
         );
       })}
       <div className={styles.totalPrice}>
-        {/* Div para el precio total */}
-        <h3>Total Price: ${totalPrice.toFixed(2)}</h3>{" "}
-        {/* Mostrar precio total */}
+        <h3>
+          Total Price: $
+          {foods
+            .reduce(function (total, food) {
+              return total + food.price * food.quantity;
+            }, 0)
+            .toFixed(2)}
+        </h3>
       </div>
-      {/* Botón para comprar */}
       <button className={styles.buyButton} onClick={handleBuy}>
         Buy
       </button>
       <button className={styles.resetButton} onClick={resetFoods}>
         Restore foods
-      </button>{" "}
-      {/* Botón para restablecer la lista de alimentos */}
+      </button>
     </div>
   );
 }

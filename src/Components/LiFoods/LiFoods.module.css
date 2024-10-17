@@ -9,6 +9,11 @@
   box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
 }
 
+.foodIcon.outOfStock {
+  text-decoration: line-through;
+  color: gray;
+}
+
 .foodItem {
   font-size: 2rem; /* Tamaño del ícono */
   padding: 10px;
