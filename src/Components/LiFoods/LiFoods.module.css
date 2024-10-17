@@ -9,9 +9,9 @@
   box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
 }
 
-.foodIcon.outOfStock {
-  text-decoration: line-through;
-  color: gray;
+.noStockMessage {
+  width: 30px;
+  font-size: 10px;
 }
 
 .foodItem {
@@ -27,6 +27,7 @@
   max-width: 500px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
   height: 50px;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  gap: 20px;
 }
 
 /* Otros estilos se mantienen igual... */
@@ -58,13 +59,15 @@
 
 /* Nueva clase para botones más pequeños */
 .smallButton {
-  padding: 2px 4px; /* Espaciado interno reducido para botones más pequeños */
-  font-size: 10px; /* Tamaño de fuente más pequeño */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  border: 1px solid #aaa; /* Borde de los botones pequeños */
+  width: 45px;
+  height: 20px;
+  padding: 2px 4px;
+  font-size: 10px;
+  cursor: pointer;
+  border: 1px solid #aaa;
   border-color: rgb(74, 78, 79);
   background-color: rgb(43, 45, 46);
-  border-radius: 3px; /* Esquinas redondeadas */
+  border-radius: 3px;
 }
 
 .smallButton:hover {
