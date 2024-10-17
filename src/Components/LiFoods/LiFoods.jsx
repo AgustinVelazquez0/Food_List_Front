@@ -5,25 +5,23 @@ function LiFoods() {
   const [foods, setFoods] = useState([]); // Inicializar con un array vacío
   const [loading, setLoading] = useState(true); // Estado de carga
 
-  // Definir fetchFoods para obtener datos de la API
-  function fetchFoods() {
+  // Definir fetchFoods para obtener datos de la API con async/await
+  async function fetchFoods() {
     setLoading(true); // Colocar la aplicación en estado de carga
-    fetch("https://mocki.io/v1/5852ed66-d9a7-4b12-8470-b8ae178e89d5")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setFoods(data); // Actualizar el estado con los datos recibidos
-      })
-      .catch(function (error) {
-        console.error("Error fetching food data:", error);
-      })
-      .finally(function () {
-        setLoading(false); // Quitar el estado de carga
-      });
+    try {
+      const response = await fetch(
+        "https://mocki.io/v1/5852ed66-d9a7-4b12-8470-b8ae178e89d5"
+      );
+      const data = await response.json();
+      setFoods(data); // Actualizar el estado con los datos recibidos
+    } catch (error) {
+      console.error("Error fetching food data:", error);
+    } finally {
+      setLoading(false); // Quitar el estado de carga
+    }
   }
 
-  useEffect(function () {
+  useEffect(() => {
     fetchFoods(); // Llamar a la API cuando se monte el componente
   }, []);
 

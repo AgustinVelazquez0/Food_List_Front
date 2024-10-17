@@ -9,9 +9,9 @@
   box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
 }
 
-.foodIcon.outOfStock {
-  text-decoration: line-through;
-  color: gray;
+.noStockMessage {
+  width: 30px;
+  font-size: 10px;
 }
 
 .foodItem {
@@ -27,6 +27,7 @@
   max-width: 500px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
   height: 50px;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  gap: 20px;
 }
 
 /* Otros estilos se mantienen igual... */
