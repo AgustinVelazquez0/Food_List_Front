@@ -13,8 +13,7 @@
   display: flex; /* Asegúrate de que esta línea esté presente */
   flex-wrap: wrap;
   justify-content: center; /* Cambiado para centrar el contenido */
-  width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
-  max-width: 80vh; /* Ancho máximo para evitar que se extienda demasiado */
+  width: 100%;
   border-radius: 10px;
   padding: 10px; /* Espaciado interno para el contenedor */
   box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */

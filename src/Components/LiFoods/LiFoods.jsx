@@ -8,7 +8,7 @@ function LiFoods() {
   // Definir fetchFoods para obtener datos de la API
   function fetchFoods() {
     setLoading(true); // Colocar la aplicación en estado de carga
-    fetch("https://mocki.io/v1/5852ed66-d9a7-4b12-8470-b8ae178e89d5")
+    fetch("https://mocki.io/v1/2c739fd4-0a08-4a23-9377-22caadde6f05")
       .then(function (response) {
         return response.json();
       })

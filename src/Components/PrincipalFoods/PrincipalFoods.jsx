@@ -6,11 +6,11 @@ function PrincipalFoods() {
       <h2>Add To Your Order</h2>
       <div className={styles.contenedorFoods}>
         <div className={styles.foods}>🍔</div>
-        <div className={styles.foods}>🍕</div>
         <div className={styles.foods}>🌭</div>
         <div className={styles.foods}>🧀</div>
         <div className={styles.foods}>🥩</div>
         <div className={styles.foods}>🥗</div>
+        <div className={styles.foods}>🌮</div>
       </div>
     </div>
   );
