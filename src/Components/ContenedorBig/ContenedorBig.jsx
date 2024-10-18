@@ -1,13 +1,13 @@
 import PropTypes from "prop-types"; // Importar PropTypes
 import styles from "./ContenedorBig.module.css"; // Si necesitas estilos
 
-const ContenedorBig = ({ children }) => {
+function ContenedorBig(props) {
   return (
     <div className={styles.ContenedorBig}>
-      {children} {/* Renderiza los componentes hijos */}
+      {props.children} {/* Renderiza los componentes hijos */}
     </div>
   );
-};
+}
 
 // Definir las propTypes
 ContenedorBig.propTypes = {
