@@ -87,7 +87,7 @@ function LiFoods() {
             <span className={styles.foodQuantity}>{"x" + food.quantity}</span>{" "}
             {/* Mostrar aviso de "No Stock" */}
             {food.stock === 0 && (
-              <div className={styles.noStockMessage}>No Stock :(</div>
+              <div className={styles.noStockMessage}>No Stock</div>
             )}
             {/* Botones */}
             <button
@@ -97,7 +97,7 @@ function LiFoods() {
               }}
               disabled={food.stock === 0} // Deshabilitar botón si no hay stock
             >
-              +
+              ➕
             </button>
             <button
               className={styles.button + " " + styles.smallButton}
@@ -105,7 +105,7 @@ function LiFoods() {
                 decreaseQuantity(index);
               }}
             >
-              -
+              ➖
             </button>
             <button
               className={styles.button + " " + styles.smallButton}
