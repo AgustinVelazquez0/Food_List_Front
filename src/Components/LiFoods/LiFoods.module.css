@@ -11,7 +11,8 @@
 
 .noStockMessage {
   width: 30px;
-  font-size: 10px;
+  font-size: 12px;
+  color: red;
 }
 
 .foodItem {
@@ -59,15 +60,13 @@
 
 /* Nueva clase para botones más pequeños */
 .smallButton {
-  width: 45px;
-  height: 20px;
-  padding: 2px 4px;
-  font-size: 10px;
-  cursor: pointer;
-  border: 1px solid #aaa;
+  padding: 2px 4px; /* Espaciado interno reducido para botones más pequeños */
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  border: 1px solid #aaa; /* Borde de los botones pequeños */
   border-color: rgb(74, 78, 79);
   background-color: rgb(43, 45, 46);
-  border-radius: 3px;
+  border-radius: 3px; /* Esquinas redondeadas */
 }
 
 .smallButton:hover {
