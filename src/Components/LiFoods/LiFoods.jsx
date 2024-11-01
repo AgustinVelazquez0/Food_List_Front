@@ -5,19 +5,40 @@ function LiFoods() {
   const [foods, setFoods] = useState([]); // Inicializar con un array vacío
   const [loading, setLoading] = useState(true); // Estado de carga
 
+  // URL base de JSON Server
+  const BASE_URL = "http://localhost:3001/products";
+
   // Definir fetchFoods para obtener datos de la API con async/await
   async function fetchFoods() {
     setLoading(true); // Colocar la aplicación en estado de carga
     try {
-      const response = await fetch(
-        "https://mocki.io/v1/5852ed66-d9a7-4b12-8470-b8ae178e89d5"
-      );
+      const response = await fetch(BASE_URL);
       const data = await response.json();
-      setFoods(data); // Actualizar el estado con los datos recibidos
+      if (Array.isArray(data)) {
+        setFoods(data); // Actualizar el estado con los datos recibidos
+      } else {
+        console.error("Unexpected data format:", data);
+      }
     } catch (error) {
       console.error("Error fetching food data:", error);
     } finally {
       setLoading(false); // Quitar el estado de carga
+    }
+  }
+
+  // Función para actualizar el stock y la cantidad en JSON Server
+  async function updateFood(index, updatedFood) {
+    try {
+      await fetch(`${BASE_URL}/${index + 1}`, {
+        // El índice empieza en 0, pero los ID en JSON Server comienzan en 1
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedFood),
+      });
+    } catch (error) {
+      console.error("Error updating food:", error);
     }
   }
 
@@ -26,22 +47,32 @@ function LiFoods() {
   }, []);
 
   // Funciones de lógica de la aplicación
-  function increaseQuantity(index) {
+  async function increaseQuantity(index) {
     const newFoods = [...foods];
     if (newFoods[index].stock > 0) {
       newFoods[index].quantity++;
       newFoods[index].stock--;
+
+      setFoods(newFoods);
+      await updateFood(index, {
+        quantity: newFoods[index].quantity,
+        stock: newFoods[index].stock,
+      });
     }
-    setFoods(newFoods);
   }
 
-  function decreaseQuantity(index) {
+  async function decreaseQuantity(index) {
     const newFoods = [...foods];
     if (newFoods[index].quantity > 0) {
       newFoods[index].quantity--;
       newFoods[index].stock++;
+
+      setFoods(newFoods);
+      await updateFood(index, {
+        quantity: newFoods[index].quantity,
+        stock: newFoods[index].stock,
+      });
     }
-    setFoods(newFoods);
   }
 
   function removeFood(index) {
@@ -69,62 +100,49 @@ function LiFoods() {
 
   return (
     <div className={styles.foodsContainer}>
-      {foods.map(function (food, index) {
-        return (
-          <div key={index} className={styles.foodItem}>
-            <span
-              className={
-                styles.foodIcon +
-                " " +
-                (food.stock === 0 ? styles.outOfStock : "")
-              }
-            >
-              {food.icon}
-            </span>{" "}
-            <span className={styles.foodPrice}>
-              {"$" + food.price.toFixed(2)}
-            </span>{" "}
-            <span className={styles.foodQuantity}>{"x" + food.quantity}</span>{" "}
-            {/* Mostrar aviso de "No Stock" */}
-            {food.stock === 0 && (
-              <div className={styles.noStockMessage}>No Stock</div>
-            )}
-            {/* Botones */}
-            <button
-              className={styles.button + " " + styles.smallButton}
-              onClick={function () {
-                increaseQuantity(index);
-              }}
-              disabled={food.stock === 0} // Deshabilitar botón si no hay stock
-            >
-              ➕
-            </button>
-            <button
-              className={styles.button + " " + styles.smallButton}
-              onClick={function () {
-                decreaseQuantity(index);
-              }}
-            >
-              ➖
-            </button>
-            <button
-              className={styles.button + " " + styles.smallButton}
-              onClick={function () {
-                removeFood(index);
-              }}
-            >
-              Eliminar
-            </button>
-          </div>
-        );
-      })}
+      {foods.map((food, index) => (
+        <div key={index} className={styles.foodItem}>
+          <span
+            className={`${styles.foodIcon} ${
+              food.stock === 0 ? styles.outOfStock : ""
+            }`}
+          >
+            {food.icon}
+          </span>{" "}
+          <span className={styles.foodPrice}>
+            {"$" + food.price.toFixed(2)}
+          </span>{" "}
+          <span className={styles.foodQuantity}>{"x" + food.quantity}</span>{" "}
+          {food.stock === 0 && (
+            <div className={styles.noStockMessage}>No Stock</div>
+          )}
+          {/* Botones */}
+          <button
+            className={`${styles.button} ${styles.smallButton}`}
+            onClick={() => increaseQuantity(index)}
+            disabled={food.stock === 0} // Deshabilitar botón si no hay stock
+          >
+            ➕
+          </button>
+          <button
+            className={`${styles.button} ${styles.smallButton}`}
+            onClick={() => decreaseQuantity(index)}
+          >
+            ➖
+          </button>
+          <button
+            className={`${styles.button} ${styles.smallButton}`}
+            onClick={() => removeFood(index)}
+          >
+            Eliminar
+          </button>
+        </div>
+      ))}
       <div className={styles.totalPrice}>
         <h3>
           Total Price: $
           {foods
-            .reduce(function (total, food) {
-              return total + food.price * food.quantity;
-            }, 0)
+            .reduce((total, food) => total + food.price * food.quantity, 0)
             .toFixed(2)}
         </h3>
       </div>
