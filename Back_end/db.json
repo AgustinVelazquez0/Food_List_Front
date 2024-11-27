@@ -1,0 +1,46 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "icon": "🍔",
+      "price": 5.99,
+      "quantity": 0,
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "icon": "🌭",
+      "price": 3.49,
+      "quantity": 0,
+      "stock": 8
+    },
+    {
+      "id": 3,
+      "icon": "🧀",
+      "price": 4.99,
+      "quantity": 0,
+      "stock": 12
+    },
+    {
+      "id": 4,
+      "icon": "🥩",
+      "price": 7.99,
+      "quantity": 0,
+      "stock": 5
+    },
+    {
+      "id": 5,
+      "icon": "🥗",
+      "price": 6.49,
+      "quantity": 0,
+      "stock": 15
+    },
+    {
+      "id": 6,
+      "icon": "🌮",
+      "price": 4.49,
+      "quantity": 0,
+      "stock": 7
+    }
+  ]
+}

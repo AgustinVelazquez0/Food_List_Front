@@ -7,9 +7,7 @@ function LiFoods() {
   // Definir fetchFoods para obtener datos de la API
   async function fetchFoods() {
     try {
-      const response = await fetch(
-        "https://mocki.io/v1/2c739fd4-0a08-4a23-9377-22caadde6f05"
-      );
+      const response = await fetch("http://localhost:5000/foods");
       const data = await response.json();
       setFoods(data); // Actualizar el estado con los datos recibidos
     } catch (error) {
