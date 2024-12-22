@@ -14,7 +14,7 @@ Este es el frontend de la aplicación de pedidos de comida, que permite a los us
 1. **Clona el repositorio:**
 
    ```bash
-   https://github.com/AgustinVelazquez0/Food_List_Front
+   git@github.com:AgustinVelazquez0/Food_List_Front.git
    ```
 
 2. **Navega a la carpeta del proyecto:**
