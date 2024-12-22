@@ -7,9 +7,18 @@ function LiFoods() {
   // Definir fetchFoods para obtener datos de la API
   async function fetchFoods() {
     try {
-      const response = await fetch("http://localhost:5000/foods");
+      const response = await fetch("http://localhost:3001/foods");
       const data = await response.json();
-      setFoods(data); // Actualizar el estado con los datos recibidos
+
+      // Asegúrate de que cada comida tenga un quantity inicial si no está presente
+      const updatedFoods = data.map((food) => ({
+        ...food,
+        quantity: food.quantity || 0, // Inicializa quantity en 0 si no está presente
+        stock: food.stock || 0, // Inicializa stock en 0 si no está presente
+      }));
+
+      console.log("Datos actualizados:", updatedFoods); // Verifica los datos actualizados
+      setFoods(updatedFoods); // Actualizar el estado con los datos modificados
     } catch (error) {
       console.error("Error fetching food data:", error);
     }
@@ -49,7 +58,7 @@ function LiFoods() {
 
   function handleBuy() {
     const totalPrice = foods.reduce(
-      (total, food) => total + food.price * food.quantity,
+      (total, food) => total + (food.price || 0) * (food.quantity || 0), // Asegúrate de que price y quantity existan
       0
     );
     alert("Total a pagar: $" + totalPrice.toFixed(2));
@@ -64,12 +73,15 @@ function LiFoods() {
               food.stock === 0 ? styles.outOfStock : ""
             }`}
           >
-            {food.icon}
+            {food.icon}{" "}
+            {/* Asegúrate de que este valor se esté pasando correctamente */}
           </span>{" "}
           <span className={styles.foodPrice}>
-            {"$" + food.price.toFixed(2)}
+            {"$" + (food.price ? food.price.toFixed(2) : "0.00")}
           </span>{" "}
-          <span className={styles.foodQuantity}>{"x" + food.quantity}</span>{" "}
+          <span className={styles.foodQuantity}>
+            {"x" + (food.quantity || 0)}
+          </span>{" "}
           {food.stock === 0 && (
             <div className={styles.noStockMessage}>No Stock</div>
           )}
@@ -98,7 +110,10 @@ function LiFoods() {
         <h3>
           Total Price: $
           {foods
-            .reduce((total, food) => total + food.price * food.quantity, 0)
+            .reduce(
+              (total, food) => total + (food.price || 0) * (food.quantity || 0),
+              0
+            )
             .toFixed(2)}
         </h3>
       </div>
