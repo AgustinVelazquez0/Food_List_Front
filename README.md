@@ -14,13 +14,13 @@ Este es el frontend de la aplicación de pedidos de comida, que permite a los us
 1. **Clona el repositorio:**
 
    ```bash
-   git clone git@github.com:AgustinVelazquez0/Food_List_Back.git
+   https://github.com/AgustinVelazquez0/Food_List_Front
    ```
 
 2. **Navega a la carpeta del proyecto:**
 
    ```bash
-   cd Food_List_Back
+   cd Food_List
    ```
 
 3. **Instala las dependencias:**
