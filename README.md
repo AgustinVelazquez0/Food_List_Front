@@ -1,48 +1,48 @@
 # Food Ordering Application - Frontend
 
-Este es el frontend de la aplicación de pedidos de comida, que permite a los usuarios visualizar y seleccionar alimentos, agregarlos a su carrito y realizar un pedido. El proyecto está desarrollado con **React** y **CSS Modules**.
+This is the frontend of the food ordering application, which allows users to view and select food, add it to their cart, and place an order. The project is developed with **React** and **CSS Modules**.
 
-## Tecnologías utilizadas:
+## Technologies Used:
 
-- **React**: Para la construcción de la interfaz de usuario.
-- **CSS Modules**: Para los estilos aislados en componentes.
-- **Fetch API**: Para hacer solicitudes HTTP al backend.
-- **JavaScript ES6**: Usado para la lógica de los componentes y la gestión del estado.
+- **React**: For building the user interface.
+- **CSS Modules**: For isolated component styles.
+- **Fetch API**: For making HTTP requests to the backend.
+- **JavaScript ES6**: Used for component logic and state management.
 
-## Instalación:
+## Installation:
 
-1. **Clona el repositorio:**
+1. **Clone the repository:**
 
    ```bash
    git@github.com:AgustinVelazquez0/Food_List_Front.git
    ```
 
-2. **Navega a la carpeta del proyecto:**
+2. **Navigate to the project folder:**
 
    ```bash
    cd Food_List
    ```
 
-3. **Instala las dependencias:**
+3. **Install the dependencies:**
 
    ```bash
    npm install
    ```
 
-4. **Ejecuta el proyecto:**
+4. **Run the project:**
 
    ```bash
    npm run dev
    ```
 
-   El frontend estará disponible en `http://localhost:5173`.
+   The frontend will be available at http://localhost:5173`.
 
-## Funcionamiento:
+## Functionality:
 
-- Al iniciar la aplicación, se realiza una solicitud al backend para obtener los datos de los alimentos, incluyendo sus íconos, precios y cantidades disponibles.
-- Los usuarios pueden seleccionar alimentos y agregarlos a su pedido, visualizando el total en tiempo real.
-- El ícono de cada alimento es mostrado en la interfaz de usuario.
+- When the application starts, a request is made to the backend to fetch the food data, including icons, prices, and available quantities.
+- Users can select food and add it to their order, viewing the total in real-time.
+- Each food item's icon is displayed in the user interface.
 
-## Repositorios Relacionados:
+## Related Repositories:
 
-- [Backend del proyecto](https://github.com/AgustinVelazquez0/Food_List_Back)
+- [Backend proyect](https://github.com/AgustinVelazquez0/Food_List_Back)
